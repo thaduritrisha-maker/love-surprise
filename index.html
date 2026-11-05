@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You + ME = Our Universe ❣</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #ffb6c9, #f5c6e7, #d9b8ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 20px;
+    color: #8b174e;
+}
+
+.container {
+    width: 100%;
+    max-width: 430px;
+    min-height: 440px;
+    padding: 35px 22px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 10px 35px #96205a33;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 30px;
+    color: #d63384;
+    margin-bottom: 18px;
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 25px;
+    color: #c02b70;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.emoji {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+button {
+    border: none;
+    background: #ed5797;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 9px 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #c92c75;
+    transform: scale(1.05);
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #f2a4c7;
+    border-radius: 15px;
+    outline: none;
+    font-size: 16px;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+    animation: appear 0.5s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.progress {
+    font-size: 13px;
+    color: #bd6590;
+    margin-top: 20px;
+}
+
+.result {
+    background: #ffe5f0;
+    padding: 22px;
+    border-radius: 20px;
+    margin: 15px 0;
+    font-size: 23px;
+    font-weight: bold;
+    color: #d63384;
+}
+
+/* Heart animation */
+.floating-heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 25px;
+    pointer-events: none;
+    z-index: 10;
+    animation: heartFloat 4s ease-in forwards;
+}
+
+@keyframes heartFloat {
+    0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        transform: translateY(-110vh) scale(1.5) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.final-heart {
+    font-size: 65px;
+    display: inline-block;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- PAGE 1: WELCOME -->
+<div class="page active" id="page1">
+    <div class="emoji">💗🌍💗</div>
+    <h1>You + ME = Our Universe ❣</h1>
+    <p>In a world full of people,<br>I choose you every time! ❤️</p>
+    <p>I have some little questions for you... Are you ready? 🥰</p>
+    <button onclick="nextPage(2)">Click To Start 💌</button>
+</div>
+
+<!-- PAGE 2: QUESTION 1 -->
+<div class="page" id="page2">
+    <div class="emoji">🥺❤️</div>
+    <h2>Question No. 1</h2>
+    <p>Do you love me??? 💕</p>
+    <div class="options">
+        <button onclick="answerLove('Yes')">YES ❤️</button>
+        <button onclick="answerLove('No')">NO 🙄</button>
+    </div>
+    <div class="progress">Question 1 of 3</div>
+</div>
+
+<!-- PAGE 3: ANSWER 1 -->
+<div class="page" id="page3">
+    <div class="emoji">😂💔</div>
+    <h2>Your Answer Is...</h2>
+    <div class="result">NOOOOO! 😂❤️</div>
+    <p>Whatever you clicked,<br>I already know your answer! 😜</p>
+    <button onclick="nextPage(4)">Next Question ➡️</button>
+</div>
+
+<!-- PAGE 4: QUESTION 2 -->
+<div class="page" id="page4">
+    <div class="emoji">🎨🌈</div>
+    <h2>Question No. 2</h2>
+    <p>What's your favourite colour??? 💗</p>
+    <input type="text" id="colour"
+    placeholder="Enter your favourite colour...">
+    <button onclick="saveColour()">Next Question ➡️</button>
+    <div class="progress">Question 2 of 3</div>
+</div>
+
+<!-- PAGE 5: QUESTION 3 -->
+<div class="page" id="page5">
+    <div class="emoji">🌹🥰</div>
+    <h2>Question No. 3</h2>
+    <p>Do you remember our first date??? ❤️</p>
+    <div class="options">
+        <button onclick="answerDate('Yes')">YES 🥰</button>
+        <button onclick="answerDate('No')">NO 😜</button>
+    </div>
+    <div class="progress">Question 3 of 3</div>
+</div>
+
+<!-- PAGE 6: FINAL SURPRISE -->
+<div class="page" id="page6">
+    <div class="final-heart">❤️</div>
+    <h2>Hahaha! Your Answer Is...</h2>
+    <div class="result">NO! 😂❤️</div>
+    <p>How can you forget our first date? 🥺 It's one of my sweetest memories!</p>
+    <p id="savedColour"></p>
+    <h2>You + ME = FOREVER ❣</h2>
+    <p>No matter how many questions I ask, you will always be my favourite person! 💗</p>
+    <button onclick="playAgain()">Play Again 💕</button>
+</div>
+
+</div>
+
+<script>
+
+// CREATE FLOATING HEARTS
+for (let i = 0; i < 12; i++) {
+    let heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 8 + "s";
+    document.body.appendChild(heart);
+}
+
+// PAGE NAVIGATION
+function nextPage(pageNumber) {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + pageNumber)
+        .classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+// QUESTION 1
+function answerLove(answer) {
+    console.log("Love answer:", answer);
+    nextPage(3);
+}
+
+// QUESTION 2
+function saveColour() {
+    let colour = document.getElementById("colour").value.trim();
+
+    if (colour === "") {
+        alert("Please enter your favourite colour! 🎨");
+        return;
+    }
+
+    document.getElementById("savedColour").innerHTML =
+        "Your favourite colour is: <b>" +
+        escapeHTML(colour) + "</b> 🌈";
+
+    nextPage(5);
+}
+
+// SAFELY DISPLAY TEXT
+function escapeHTML(value) {
+    return value.replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[char];
+    });
+}
+
+// QUESTION 3
+function answerDate(answer) {
+    console.log("Date answer:", answer);
+    nextPage(6);
+    createHearts();
+}
+
+// FINAL HEART EXPLOSION
+function createHearts() {
+    const hearts = ["❤️", "💗", "💕", "💖", "💘", "🥰"];
+
+    for (let i = 0; i < 35; i++) {
+        let heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+        heart.innerHTML =
+            hearts[Math.floor(Math.random() * hearts.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration =
+            (3 + Math.random() * 3) + "s";
+
+        heart.style.fontSize =
+            (20 + Math.random() * 30) + "px";
+
+        document.body.appendChild(heart);
+
+        heart.addEventListener("animationend", function() {
+            heart.remove();
+        });
+    }
+}
+
+// PLAY AGAIN
+function playAgain() {
+    document.getElementById("colour").value = "";
+    document.getElementById("savedColour").innerHTML = "";
+    nextPage(1);
+}
+
+</script>
+
+</body>
+</html>
